@@ -2,6 +2,7 @@ package LR4;
 import java.util.Date;
 
 public class Booking {
+	private int id;
 	private Room room;
 	private User user;
 	private Date startDate;
@@ -29,5 +30,11 @@ public class Booking {
 	}
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }

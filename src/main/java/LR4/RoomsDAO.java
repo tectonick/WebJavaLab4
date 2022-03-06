@@ -21,7 +21,7 @@ public class RoomsDAO{
 	public Room getRoomById(int id) {
 		Room room=null;
 		try {
-			ResultSet rs=db.query("SELECT * FROM room WHERE id=id");
+			ResultSet rs=db.query("SELECT * FROM room WHERE id="+id);
 			if (rs.next()) {				
 				room=new Room();
 				room.setId(rs.getInt("id"));

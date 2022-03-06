@@ -41,6 +41,9 @@ public class User implements Serializable{
 		this.setPasswordHash(passwordHash);
 		this.setRole(role);
 	}
+	public User() {
+		
+	}
 	
 	public String getPasswordHash() {
 		return passwordHash;
