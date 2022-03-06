@@ -1,6 +1,8 @@
+package LR4;
 import java.util.Date;
 
 public class Booking {
+	private Room room;
 	private User user;
 	private Date startDate;
 	private Date endDate;
@@ -21,5 +23,11 @@ public class Booking {
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 }

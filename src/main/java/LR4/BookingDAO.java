@@ -1,4 +1,4 @@
-
+package LR4;
 /**
  * Класс доступа к данным о бронях.
  * 
@@ -8,8 +8,9 @@
  */
 public class BookingDAO{
 
-	BookingDAO(){
-		
+	private DB db;
+	public BookingDAO(DB db){
+		this.setDb(db);
 	}
 
 	public Booking getBookingById(int id) {
@@ -26,5 +27,13 @@ public class BookingDAO{
 	
 	public void deleteBooking(Booking book) {
 		
+	}
+
+	public DB getDb() {
+		return db;
+	}
+
+	public void setDb(DB db) {
+		this.db = db;
 	}
 }

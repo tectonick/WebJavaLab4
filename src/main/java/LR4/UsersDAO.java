@@ -1,4 +1,4 @@
-
+package LR4;
 /**
  * Класс доступа к данным о пользователях.
  * 
@@ -8,7 +8,9 @@
  */
 public class UsersDAO{
 
-	UsersDAO(){
+	private DB db;
+	public UsersDAO(DB db){
+		this.setDb(db);
 		
 	}
 	
@@ -30,5 +32,15 @@ public class UsersDAO{
 	
 	public void deleteUser(User user) {
 		
+	}
+
+
+	public DB getDb() {
+		return db;
+	}
+
+
+	public void setDb(DB db) {
+		this.db = db;
 	}
 }

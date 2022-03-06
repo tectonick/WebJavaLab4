@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8"%>   
+<%@ page import="LR4.*" %>
 
 <!DOCTYPE html>
 <html>
@@ -36,9 +36,17 @@
 </header>
 
 <!-- Page content -->
-<div class="w3-content w3-padding" style="max-width:1564px">
+<div class="w3-content w3-padding" style="max-width:1564px; margin-top:40px">
  
+<% 
 
+DB db=new DB();
+db.init("root","12345678");
+RoomsDAO rdao=new RoomsDAO(db);
+Room room=rdao.getRoomById(1);
+out.println("<p>"+room.getId()+" is with "+room.getBeds()+ " beds"+"</p>");
+
+%>
 
 
 <!-- End page content -->
