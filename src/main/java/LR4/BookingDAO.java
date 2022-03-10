@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Класс доступа к данным о бронях.
  * 
@@ -23,6 +26,8 @@ public class BookingDAO{
 		roomsdao=new RoomsDAO(db);
 	}
 
+	private static final Logger logger = LogManager.getLogger("web");
+	
 	public Booking getBookingById(int id) {
 		Booking booking=null;
 		try {
@@ -99,14 +104,36 @@ public class BookingDAO{
 	
     
 	public void updateBooking(Booking book) {	
+		try {
+			db.update("UPDATE booking SET roomid="+book.getRoom().getId()+", userid="+book.getUser().getId()+", startdate="+book.getStartDate()+", enddate="+book.getEndDate()+ " WHERE id="+book.getId());
+			logger.info("Updated a booking with id "+book.getId());
+		} catch (SQLException e) {
+			logger.info("Error updating a booking with id "+book.getId());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void addBooking(Booking book) {
-		
+		try {
+			db.update("INSERT INTO booking VALUES("+book.getId()+","+book.getRoom().getId()+","+book.getUser().getId()+","+book.getStartDate()+","+book.getEndDate()+")");
+			logger.info("Added new booking");
+		} catch (SQLException e) {
+			logger.info("Error adding a booking");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void deleteBooking(Booking book) {
-		
+		try {
+			db.update("DELETE FROM booking WHERE id="+book.getId());
+			logger.info("Deleted a booking with id "+book.getId());
+		} catch (SQLException e) {
+			logger.info("Error deleting a booking with id "+book.getId());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public DB getDb() {
