@@ -19,6 +19,12 @@ public class DB {
 		}		
 	}
 	
+	public DB(String username, String password) {
+		this.init(username, password);
+	}
+	public DB() {
+		
+	}
 	
 	public ResultSet query(String sql) throws SQLException {
 		Statement st=con.createStatement();

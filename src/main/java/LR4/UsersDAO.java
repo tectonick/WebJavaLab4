@@ -81,7 +81,7 @@ public class UsersDAO{
 	public User getUserByLogin(String login) {
 		User user=null;
 		try {
-			ResultSet rs=db.query("SELECT * FROM user WHERE login="+login);
+			ResultSet rs=db.query("SELECT * FROM user WHERE login=\""+login+"\"");
 			if (rs.next()) {				
 				user=new User();
 				user.setId(rs.getInt("id"));
@@ -104,7 +104,7 @@ public class UsersDAO{
 	public void updateUser(User user) {	
 		int role=(user.getRole()==Role.admin)?1:0;
 		try {
-			db.update("UPDATE user SET login="+user.getLogin()+", passhash="+user.getPasswordHash()+", role="+role+ " WHERE id="+user.getId());
+			db.update("UPDATE user SET login=\""+user.getLogin()+"\", passhash=\""+user.getPasswordHash()+"\", role="+role+ " WHERE id="+user.getId());
 			logger.info("Updated a user with id "+user.getId());
 		} catch (SQLException e) {
 			logger.error("Error updating a user with id "+user.getId());
@@ -116,7 +116,7 @@ public class UsersDAO{
 	public void addUser(User user) {
 		int role=(user.getRole()==Role.admin)?1:0;
 		try {
-			db.update("INSERT INTO user VALUES("+user.getId()+","+user.getLogin()+","+user.getPasswordHash()+","+role+")");
+			db.update("INSERT INTO user VALUES("+user.getId()+",\""+user.getLogin()+"\",\""+user.getPasswordHash()+"\","+role+")");
 			logger.info("Added new user to db with login "+user.getLogin());
 		} catch (SQLException e) {
 			logger.info("Error adding new user to db with login "+user.getLogin());

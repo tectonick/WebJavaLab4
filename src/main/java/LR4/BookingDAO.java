@@ -105,7 +105,7 @@ public class BookingDAO{
     
 	public void updateBooking(Booking book) {	
 		try {
-			db.update("UPDATE booking SET roomid="+book.getRoom().getId()+", userid="+book.getUser().getId()+", startdate="+book.getStartDate()+", enddate="+book.getEndDate()+ " WHERE id="+book.getId());
+			db.update("UPDATE booking SET roomid="+book.getRoom().getId()+", userid="+book.getUser().getId()+", startdate=\""+book.getStartDate()+"\", enddate=\""+book.getEndDate()+ "\" WHERE id="+book.getId());
 			logger.info("Updated a booking with id "+book.getId());
 		} catch (SQLException e) {
 			logger.info("Error updating a booking with id "+book.getId());
@@ -116,7 +116,7 @@ public class BookingDAO{
 	
 	public void addBooking(Booking book) {
 		try {
-			db.update("INSERT INTO booking VALUES("+book.getId()+","+book.getRoom().getId()+","+book.getUser().getId()+","+book.getStartDate()+","+book.getEndDate()+")");
+			db.update("INSERT INTO booking VALUES("+book.getId()+","+book.getRoom().getId()+","+book.getUser().getId()+",\""+book.getStartDate()+"\",\""+book.getEndDate()+"\")");
 			logger.info("Added new booking");
 		} catch (SQLException e) {
 			logger.info("Error adding a booking");

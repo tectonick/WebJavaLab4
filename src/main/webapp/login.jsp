@@ -14,6 +14,12 @@
 </head>
 <body>
 
+<%
+User currentUser=(User)session.getAttribute("user");
+if (currentUser!=null) {out.println(currentUser.getLogin());}
+%>
+
+
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
@@ -21,8 +27,13 @@
     <!-- Float links to the right. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
       <a href="rooms.jsp" class="w3-bar-item w3-button">Комнаты</a>
-      <a href="auth.jsp" class="w3-bar-item w3-button">Войти</a>
-      <a href="register.jsp" class="w3-bar-item w3-button">Зарегистрироваться</a>
+      	<%if (currentUser==null) {%>
+		    <a href="login.jsp" class="w3-bar-item w3-button">Войти</a>
+      		<a href="register.jsp" class="w3-bar-item w3-button">Зарегистрироваться</a>
+		<%} else{%>
+      		<a href="logout" class="w3-bar-item w3-button">Выйти</a>
+      	<%} %>
+      
     </div>
   </div>
 </div>
@@ -42,7 +53,7 @@
     <!-- Login Form -->
     <form method="POST" action="auth">
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="Логин">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Пароль">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Пароль">
       <input type="submit" class="fadeIn fourth" value="Войти">
     </form>
 
