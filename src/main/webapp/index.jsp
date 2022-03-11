@@ -4,8 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setBundle basename="resources.basic"/>
 
-<fmt:setLocale value="en" scope="session"/>
-
+<fmt:setLocale value="<%=session.getAttribute(\"lang\") %>" scope="session"/>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +23,7 @@ User currentUser=(User)session.getAttribute("user");
 if (currentUser!=null) {out.println(currentUser.getLogin());}
 %>
 
+
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
@@ -39,7 +39,11 @@ if (currentUser!=null) {out.println(currentUser.getLogin());}
       	<%} %>
       
     </div>
-  </div>
+      <div class="locale">
+		<a class='locale-change' href="?sessionLocale=ru" id='ru'>Рус</a>
+        <a class='locale-change' href="?sessionLocale=en" id='en'>En</a>       
+  	   </div>
+  </div>  
 </div>
 
 <!-- Header -->

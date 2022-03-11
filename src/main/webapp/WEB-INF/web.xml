@@ -69,4 +69,13 @@
     <servlet-name>book</servlet-name>
     <url-pattern>/book</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>SessionLocaleFilter</display-name>
+    <filter-name>SessionLocaleFilter</filter-name>
+    <filter-class>LR4.SessionLocaleFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>SessionLocaleFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>

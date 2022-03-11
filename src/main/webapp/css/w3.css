@@ -380,3 +380,8 @@ input[type=text]:placeholder {
 	padding:5px;
 	margin:5px;
 }
+
+.locale a{
+	color:black;
+	text-decoration:none;
+}
