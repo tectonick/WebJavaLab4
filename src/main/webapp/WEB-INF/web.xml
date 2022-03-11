@@ -59,4 +59,14 @@
     <servlet-name>registernew</servlet-name>
     <url-pattern>/registernew</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>book</display-name>
+    <servlet-name>book</servlet-name>
+    <servlet-class>LR4.book</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>book</servlet-name>
+    <url-pattern>/book</url-pattern>
+  </servlet-mapping>
 </web-app>

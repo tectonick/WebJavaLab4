@@ -57,6 +57,8 @@ if (currentUser!=null) {out.println(currentUser.getLogin());}
 DB db=new DB();
 db.init("root","12345678");
 RoomsDAO rdao=new RoomsDAO(db);
+BookingDAO bdao=new BookingDAO(db);
+
 
 List<Room> rooms=rdao.getAllRooms();
 
@@ -75,11 +77,34 @@ List<Room> rooms=rdao.getAllRooms();
       Чайник: <%=room.isTeapot()?"Есть":"Нет" %>
       Телевизор: <%=room.isTv()?"Есть":"Нет" %>
       Курение: <%=room.isFreezer()?"Разрешено":"Запрещено" %>
-      </pre>
+      </pre> 
+        
       <p class="card-text">
       	<!-- <small class="text-muted">Last updated 3 mins ago</small> -->
       </p>
     </div>
+            <div class="card-footer text-muted">
+        <%if (currentUser!=null) {%>
+        
+        <%
+        List<Booking> booksForRoom=bdao.getBookingsForRoom(room.getId());
+        %>
+                
+        <%if (booksForRoom.size()!=0) {%>
+        <p>Комната недоступна в следующие даты</p>
+        <pre><% for(Booking book:booksForRoom) { %>С <%=book.getStartDate()%> по <%=book.getEndDate()%><br><%} %></pre>
+        <%}%>
+        
+        
+		    <form class="book-form" method="post" action="book">
+		        <input type="date" name="startdate" value="2022-06-01">
+		    	<input type="date" name="enddate" value="2022-06-01">
+		    	<input type="submit" value="Забронировать"></input>
+		    	<input type="hidden" name="roomid" value="<%=room.getId() %>">
+
+		    </form>
+		<%}%>
+        </div>
   </div>
     <% } %>
 

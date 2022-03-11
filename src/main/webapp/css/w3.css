@@ -375,3 +375,8 @@ input[type=text]:placeholder {
 #formContent a {
   color:black;
 }
+
+.book-form input[type=submit]{
+	padding:5px;
+	margin:5px;
+}
