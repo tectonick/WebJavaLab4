@@ -20,7 +20,6 @@
 
 <%
 User currentUser=(User)session.getAttribute("user");
-if (currentUser!=null) {out.println(currentUser.getLogin());}
 %>
 
 
@@ -35,20 +34,21 @@ if (currentUser!=null) {out.println(currentUser.getLogin());}
 		    <a href="login.jsp" class="w3-bar-item w3-button"> <fmt:message key="label.login" /></a>
       		<a href="register.jsp" class="w3-bar-item w3-button"> <fmt:message key="label.register" /></a>
 		<%} else{%>
+			<a href="mybooks.jsp" class="w3-bar-item w3-button"> <fmt:message key="label.mybooks" /></a>
       		<a href="logout" class="w3-bar-item w3-button"> <fmt:message key="label.logout" /></a>
       	<%} %>
       
     </div>
-  </div>
+      <div class="locale">
+		<a class='locale-change' href="?sessionLocale=ru" id='ru'>Рус</a>
+        <a class='locale-change' href="?sessionLocale=en" id='en'>En</a>       
+  	   </div>
+  </div>  
 </div>
 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="/w3images/architect.jpg" alt="Architecture" width="1500" height="800">
-</header>
 
 <!-- Page content -->
-<div class="w3-content w3-padding" style="max-width:1564px; margin-top:40px">
+<div class="w3-content w3-padding" style="max-width:1564px; margin-top:80px">
  
 <% 
 
@@ -94,7 +94,7 @@ List<Room> rooms=rdao.getAllRooms();
                 
         <%if (booksForRoom.size()!=0) {%>
         <p><fmt:message key="label.unavailable" /></p>
-        <pre><% for(Booking book:booksForRoom) { %>С <%=book.getStartDate()%> по <%=book.getEndDate()%><br><%} %></pre>
+        <pre><% for(Booking book:booksForRoom) { %><%=book.getStartDate()%> - <%=book.getEndDate()%><br><%} %></pre>
         <%}%>
         
         

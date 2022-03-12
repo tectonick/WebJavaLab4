@@ -16,13 +16,14 @@ import java.security.NoSuchAlgorithmException;
  * @since       1.0
  */
 public class UserManager {
-	UsersDAO usersDAO;
-	
+	private UsersDAO usersDAO;
+	private static final Logger logger = LogManager.getLogger("web");
 	
 	public UserManager(UsersDAO usersDAO){
 		this.usersDAO=usersDAO;
 		
 	}
+	
 	
 		static final String HEXES = "0123456789abcdef";
 		public static String getHex( byte [] raw ) {
@@ -39,7 +40,7 @@ public class UserManager {
 	
 	
 	
-	private static final Logger logger = LogManager.getLogger("web");
+	
 	
 	public User auth(String login, String password) {
 		MessageDigest messageDigest;
@@ -53,6 +54,7 @@ public class UserManager {
 				throw new NullPointerException("No such user");
 			}
 				 if (user.getPasswordHash().equals(passHash)) {
+					 
 					 return user;
 				 }
 		} catch (NoSuchAlgorithmException e) {

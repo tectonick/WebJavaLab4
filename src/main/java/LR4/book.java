@@ -13,12 +13,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Servlet implementation class book
  */
 public class book extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final Logger logger = LogManager.getLogger("web");
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -63,6 +66,8 @@ public class book extends HttpServlet {
 			book.setRoom(room);
 			book.setUser(user);			
 			bdao.addBooking(book);		
+			
+			logger.info("New book was added by user "+user.getLogin());
 		}
 
 		} catch (ParseException e) {

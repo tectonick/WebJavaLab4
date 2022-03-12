@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
 <%@ page import="LR4.*" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setBundle basename="resources.basic"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -49,20 +51,47 @@ User currentUser=(User)session.getAttribute("user");
 <!-- Page content -->
 <div class="w3-content w3-padding" style="max-width:1564px; margin-top:80px">
  
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
+<%if (currentUser!=null) {%>
+<div class="card-columns">
 
-    <!-- Login Form -->
-    <form method="POST" action="auth">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="<fmt:message key="form.login" />">
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="<fmt:message key="form.password" />">
-      <input type="submit" class="fadeIn fourth" value="<fmt:message key="form.loginbutton" />">
-    </form>
+	
 
+<%
+DB db=new DB();
+db.init("root","12345678");
+BookingDAO bdao=new BookingDAO(db);
+int userid=currentUser.getId();
+List<Booking> books=bdao.getBookingsForUser(userid);
+%>	
 
+   <% for(Booking book:books) { %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><fmt:message key="label.book" /> <%=book.getId() %></h5>
+      <pre class="card-text">
+      	<fmt:message key="label.room" /> <%=book.getRoom().getId()%>
+      	<%=book.getStartDate()%> - <%=book.getEndDate()%>
+      </pre> 
+        
+      <p class="card-text">
+      	<!-- <small class="text-muted">Last updated 3 mins ago</small> -->
+      </p>
+    </div>
+          <div class="card-footer text-muted">
+            <form class="book-delete-form" method="post" action="bookdelete">
+		    	<input type="submit" value="<fmt:message key="form.bookdelete" />"></input>
+		    	<input type="hidden" name="bookid" value="<%=book.getId() %>">
+		    </form>
+        </div>
   </div>
+    <% } %>
+
+
+
+
 </div>
+<%}%>
+
 <!-- End page content -->
 </div>
 

@@ -10,12 +10,15 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Servlet implementation class auth
  */
 public class auth extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final Logger logger = LogManager.getLogger("web");
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -46,9 +49,10 @@ public class auth extends HttpServlet {
 		if (user!=null) {
 			HttpSession session=request.getSession(true);
 			session.setAttribute("user", user);
-			
+			logger.info("User "+login+" has logged into the app");
 			response.sendRedirect("index.jsp");
 		} else {
+			logger.info("User "+login+" has tried to login into the app");
 			response.sendRedirect("login.jsp");
 		}
 

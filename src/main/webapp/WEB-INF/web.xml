@@ -78,4 +78,14 @@
     <filter-name>SessionLocaleFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>bookdelete</display-name>
+    <servlet-name>bookdelete</servlet-name>
+    <servlet-class>LR4.bookdelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>bookdelete</servlet-name>
+    <url-pattern>/bookdelete</url-pattern>
+  </servlet-mapping>
 </web-app>

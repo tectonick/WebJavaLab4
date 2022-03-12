@@ -20,7 +20,6 @@
 
 <%
 User currentUser=(User)session.getAttribute("user");
-if (currentUser!=null) {out.println(currentUser.getLogin());}
 %>
 
 
@@ -35,6 +34,7 @@ if (currentUser!=null) {out.println(currentUser.getLogin());}
 		    <a href="login.jsp" class="w3-bar-item w3-button"> <fmt:message key="label.login" /></a>
       		<a href="register.jsp" class="w3-bar-item w3-button"> <fmt:message key="label.register" /></a>
 		<%} else{%>
+			<a href="mybooks.jsp" class="w3-bar-item w3-button"> <fmt:message key="label.mybooks" /></a>
       		<a href="logout" class="w3-bar-item w3-button"> <fmt:message key="label.logout" /></a>
       	<%} %>
       
@@ -46,16 +46,33 @@ if (currentUser!=null) {out.println(currentUser.getLogin());}
   </div>  
 </div>
 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="/w3images/architect.jpg" alt="Architecture" width="1500" height="800">
-</header>
-
 <!-- Page content -->
-<div class="w3-content w3-padding" style="max-width:1564px; margin-top:40px">
+<div class="w3-content w3-padding" style="max-width:1564px; margin-top:80px">
  
  
- <fmt:message key="label.welcome" />
+ 
+ <div class="half-half-image-text">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1><fmt:message key="label.welcome" /></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <div class="content">
+        <p><fmt:message key="label.greeting" /></p>
+        
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="img" style="background: url('img/index.jpg')no-repeat center;background-size:cover;"></div>
+    </div>
+  </div>
+</div>
+  </div>
+ 
+ 
  
  
 <!-- End page content -->
